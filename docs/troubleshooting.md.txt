@@ -1,0 +1,12 @@
+# Troubleshooting Log
+
+### Issue: SSH Connection Refused / Permission Denied
+**Problem:** `Permission denied (publickey)` when attempting to SSH into the AWS EC2 instance.
+**Cause:** 1. The `.pem` file had incorrect permissions (too open).
+2. The local machine was trying to use a default key instead of the MCBTA key.
+
+**Solution:**
+1. Created a fresh RSA key pair in the AWS Console.
+2. Downloaded the `.pem` file and restricted permissions:
+   ```bash
+   chmod 400 mcbta-key.pem

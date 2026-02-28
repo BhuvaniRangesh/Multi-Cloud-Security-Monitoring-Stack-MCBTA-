@@ -1,0 +1,15 @@
+import os
+
+def audit_elastic_config(file_path):
+    with open(file_path, 'r') as f:
+        content = f.read()
+        if "network.host: 0.0.0.0" in content:
+            print("[v] Network Host is correctly set to 0.0.0.0 for Cloud Ingestion.")
+        else:
+            print("[x] WARNING: network.host is NOT configured for external traffic.")
+
+        if "http.port: 9200" in content:
+            print("[v] Port 9200 is enabled.")
+
+if __name__ == "__main__":
+    audit_elastic_config('/etc/elasticsearch/elasticsearch.yml')

@@ -1,0 +1,14 @@
+#!/bin/bash
+# Multi-Cloud SIEM Automated Setup
+echo "[+] Updating system packages..."
+sudo apt-get update && sudo apt-get upgrade -y
+
+echo "[+] Adding Elastic GPG Key and Repository..."
+wget -qO - https://artifacts.elastic.co/GPG-KEY-elasticsearch | sudo gpg --dearmor -o /usr/share/keyrings/elasticsearch-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/elasticsearch-keyring.gpg] https://artifacts.elastic.co/packages/8.x/apt stable main" | sudo tee /etc/apt/sources.list.d/elastic-8.x.list
+
+echo "[+] Installing Elasticsearch, Kibana, and Filebeat..."
+sudo apt-get update
+sudo apt-get install elasticsearch kibana filebeat -y
+
+echo "[!] Remember to edit configs/elasticsearch.yml before starting services."

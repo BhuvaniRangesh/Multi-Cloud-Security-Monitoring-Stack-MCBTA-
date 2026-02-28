@@ -1,0 +1,11 @@
+#!/bin/bash
+echo "--- SIEM SERVICE HEALTH REPORT ---"
+services=("elasticsearch" "kibana" "filebeat")
+
+for svc in "${services[@]}"; do
+  if systemctl is-active --quiet $svc; then
+    echo "[ONLINE] $svc is running."
+  else
+    echo "[OFFLINE] $svc is stopped."
+  fi
+done

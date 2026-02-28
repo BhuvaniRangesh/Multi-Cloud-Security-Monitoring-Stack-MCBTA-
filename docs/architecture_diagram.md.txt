@@ -1,0 +1,6 @@
+```markdown
+# Multi-Cloud Data Flow
+1. **AWS:** CloudTrail logs -> S3 Bucket -> SQS -> **Base Machine (Filebeat)**.
+2. **Azure:** Activity Logs -> Event Hub -> **Base Machine (Filebeat)**.
+3. **GCP:** Audit Logs -> Pub/Sub -> **Base Machine (Filebeat)**.
+4. **Internal:** Filebeat -> Elasticsearch (Index) -> Kibana (Visualization).
